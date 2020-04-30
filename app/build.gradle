@@ -1,0 +1,103 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs"
+
+android {
+    compileSdkVersion 29
+
+
+    defaultConfig {
+        applicationId "com.test.test"
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+}
+
+kapt {
+    generateStubs = true
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // Dagger
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+    implementation 'javax.inject:javax.inject:1'
+    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+
+    // Java language implementation
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+
+    // Kotlin
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.3.72"
+
+    // Dynamic Feature Module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:2.3.0-alpha05"
+
+    // rx
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava2_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+
+    // Testing
+    androidTestImplementation "androidx.navigation:navigation-testing:2.3.0-alpha05"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    // Mockito
+    testImplementation "org.mockito:mockito-core:2.28.2"
+    testImplementation "io.mockk:mockk:1.9.3"
+    testImplementation "com.nhaarman:mockito-kotlin:1.5.0"
+    androidTestImplementation "io.mockk:mockk-android:1.9.3"
+
+}

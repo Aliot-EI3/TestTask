@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.test.task.ui.main.MainFragment"
+        android:label="@string/menu_home">
+        <action
+            android:id="@+id/action_nav_home_to_nav_home_second"
+            app:destination="@id/nav_about" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_detail"
+            app:destination="@id/nav_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.test.task.ui.about.AboutFragment"
+        android:label="@string/menu_about"
+        tools:layout="@layout/fragment_about">
+        <action
+            android:id="@+id/action_nav_home_second_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_detail"
+        android:name="com.test.task.ui.detail.DetailFragment"
+        android:label="@string/menu_detail"
+        tools:layout="@layout/fragment_detail">
+        <action
+            android:id="@+id/action_nav_detail_to_nav_home"
+            app:destination="@id/nav_home" />
+        <argument
+            android:name="image_extra"
+            app:argType="com.test.task.model.Image" />
+    </fragment>
+</navigation>
